@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walentynkowa Strona</title>
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background-color: #f7e7e7;
+        color: #8b0000;
+    }
+    .container {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    .main-content {
+        margin-top: 50px;
+    }
+    .button {
+        padding: 10px 20px;
+        background-color: #8b0000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .button:hover {
+        background-color: #6b0000;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="main-content">
+        <h1>Witaj na stronie pokazującej twoje zaangażowanie drugą osobą !</h1>
+        <p>1. Ile ci zajmuje na odpisanie</p>
+        <p>2. Aktualny czas który minął od tego jak wyświetlasz  <span id="current-time"></span></p>
+        <button class="button" onclick="addText()">Miło</button>
+        <div id="text-container"></div>
+    </div>
+</div>
+
+<script>
+    function addText() {
+        var newText = prompt("Wpisz tekst, który chcesz dodać:");
+        if (newText !== null && newText !== "") {
+            var textContainer = document.getElementById("text-container");
+            var newTextElement = document.createElement("p");
+            newTextElement.textContent = newText;
+            textContainer.appendChild(newTextElement);
+        }
+    }
+
+    function updateTime() {
+        var currentTime = new Date();
+        var elapsedMilliseconds = Date.now() - new Date("2024-03-02T21:09:00").getTime();
+        var hours = Math.floor(elapsedMilliseconds / (1000 * 60 * 60));
+        var minutes = Math.floor((elapsedMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((elapsedMilliseconds % (1000 * 60)) / 1000);
+        var formattedTime = hours + " godzin " + minutes + " minut " + seconds + " sekund";
+        document.getElementById("current-time").textContent = formattedTime;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+</script>
+</body>
+</html>
